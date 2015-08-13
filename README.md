@@ -1,4 +1,6 @@
-# node-basket
+# mozilla-basket
+
+`npm install mozill-basket`
 
 API wrapper around mozilla's [basket newsletter api](http://basket.readthedocs.org/en/latest/newsletter_api.html)
 
