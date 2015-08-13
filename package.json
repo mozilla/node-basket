@@ -27,7 +27,7 @@
     "firefox"
   ],
   "author": "meandave",
-  "license": "MPL",
+  "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/mozilla/node-basket/issues"
   }
