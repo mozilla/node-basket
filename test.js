@@ -17,8 +17,16 @@ test('Basket:: constructor', function(t) {
 
 test('subscribe', function (t) {
   t.plan(1);
-  b.subscribe(stubEmail, newsletters[0], function(err, data, resp) {
-    t.equal(JSON.parse(resp).status, 'ok', 'Should subscribe correctly when passed string');
+  b.subscribe(stubEmail, newsletters[0], function(err, resp) {
+    t.equal(resp.status, 'ok', 'Should subscribe correctly when passed string');
+  })
+
+});
+
+test('subscribe:: invalid email', function (t) {
+  t.plan(1);
+  b.subscribe('somethingInvalid', newsletters[0], function(err, resp) {
+    t.equals(err.message, 'Invalid email address', 'Should return error for invalid email');
   })
 
 });
@@ -26,24 +34,24 @@ test('subscribe', function (t) {
 test('subscribe:: comma list', function (t) {
   t.plan(1);
 
-  b.subscribe(stubEmail, newsletters.join(','), function(err, data, resp) {
-    t.equal(JSON.parse(resp).status, 'ok', 'Should subscribe correctly when passed comma delimited list');
+  b.subscribe(stubEmail, newsletters.join(','), function(err, resp) {
+    t.equal(resp.status, 'ok', 'Should subscribe correctly when passed comma delimited list');
   })
 });
 
 test('subscribe:: array', function (t) {
   t.plan(1);
 
-  b.subscribe(stubEmail, newsletters, function(err, data, resp) {
-    t.equal(JSON.parse(resp).status, 'ok', 'Should subscribe correctly when passed array');
+  b.subscribe(stubEmail, newsletters, function(err, resp) {
+    t.equal(resp.status, 'ok', 'Should subscribe correctly when passed array');
   })
 });
 
 test('unsubscribe', function (t) {
   t.plan(1);
 
-  b.unsubscribe(stubEmail, newsletters[0], function(err, data, resp) {
-    t.equal(data.statusCode, 404, 'Should return 404 if no token provided');
+  b.unsubscribe(stubEmail, newsletters[0], function(err, resp) {
+    t.equal(err.message, '404', 'Should return 404 if no token provided');
   })
 });
 
@@ -58,7 +66,7 @@ test('newsletters', function (t) {
 test('recover:: array', function (t) {
   t.plan(1);
 
-  b.recover(stubEmail, function(err, data, resp) {
-    t.equal(JSON.parse(resp).status, 'ok');
+  b.recover(stubEmail, function(err, resp) {
+    t.equal(resp.status, 'ok');
   });
 });

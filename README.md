@@ -9,8 +9,8 @@ API wrapper around mozilla's [basket newsletter api](http://basket.readthedocs.o
 ``` javascript
 // instantiate
 var b = new Basket({BASKET_URL: 'https://basket.mozilla.org'});
-b.subscribe('assata@example.com', 'marketplace, beta', function(err, data, resp) {
-  console.log(resp.status);
+b.subscribe('assata@example.com', 'marketplace, beta', function(err, body) {
+  console.log(body.status);
 }
 ```
 Methods:

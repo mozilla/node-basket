@@ -47,10 +47,7 @@ Basket.prototype = {
     return this;
   },
   newsletters: function(cb) {
-    this._get('/news/newsletters/', function(err, data, resp) {
-      if (err) return cb(err);
-      return cb(null, JSON.parse(resp));
-    });
+    this._get('/news/newsletters/', cb);
     return this;
   },
   debugUser: function(email, supertoken, cb) {
@@ -72,9 +69,21 @@ Basket.prototype = {
     return this;
   },
   _get: function(url, cb) {
-    request.get(this.BASKET_URL+url, cb);
+    request.get(this.BASKET_URL+url, function(err, body, resp) {
+      return handleError(err, body, resp, cb);
+    });
   },
   _post: function(url, form, cb) {
-    request.post({url:this.BASKET_URL+url, form: form}, cb);
+    request.post({url:this.BASKET_URL+url, form: form}, function(err, body, resp) {
+      return handleError(err, body, resp, cb);
+    });
   }
 };
+
+function handleError(err, resp, body, cb) {
+  if (err) return cb(err);
+  if (resp.statusCode === 404) return cb(new Error(resp.statusCode));
+  body = JSON.parse(body);
+  if (body.status === 'ok') return cb(null, body);
+  if (body.status === 'error') return cb(new Error(body.desc));
+}
