@@ -27,7 +27,7 @@ Methods:
 [python client](http://basket-client.readthedocs.org/en/latest/install.html)
 
 ## Who is responsible for this?
-- djustice@mozilla.com / [@meandavejustice](https:github.com/meandavejustice]) / JSON_voorhees(irc)
+- djustice@mozilla.com / [@meandavejustice](https://github.com/meandavejustice) / JSON_voorhees(irc)
 
 ## LICENSE
 MPL 2.0
