@@ -31,7 +31,7 @@ test('subscribe', function (t) {
 
 test('subscribe:: invalid email', function (t) {
   t.plan(1);
-  b.subscribe('somethingInvalid', newsletters[0], function(err, resp) {
+  b.subscribe('somethingInvalid', newsletters[0], function(err) {
     t.equals(err.message, 'Invalid email address', 'Should return error for invalid email');
   })
 
@@ -56,7 +56,7 @@ test('subscribe:: array', function (t) {
 test('unsubscribe', function (t) {
   t.plan(1);
 
-  b.unsubscribe(stubEmail, newsletters[0], function(err, resp) {
+  b.unsubscribe(stubEmail, newsletters[0], function(err) {
     t.equal(err.message, '404', 'Should return 404 if no token provided');
   })
 });
