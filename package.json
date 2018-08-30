@@ -1,6 +1,6 @@
 {
   "name": "mozilla-basket",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "API Wrapper around mozilla basket(newsletters)",
   "main": "index.js",
   "dependencies": {
