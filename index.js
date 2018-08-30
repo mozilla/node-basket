@@ -22,7 +22,9 @@ Basket.prototype = {
       cb = opts;
     }
 
-    if (!opts || typeof opts !== 'object' ) opts = {email: email, newsletters: newsletters};
+    const defaultOpts = {email, newsletters};
+    opts = Object.assign(defaultOpts, opts);
+
     this._post('/news/subscribe/', opts, cb);
     return this;
   },
